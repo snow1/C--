@@ -1,7 +1,8 @@
 #ifndef INERTIA_SOURCE_H
 #define INERTIA_SOURCE_H
 
-
+#include <functional>
+#include <string>
 struct InertiaSample {
     // Add members as required
 };

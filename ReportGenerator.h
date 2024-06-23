@@ -16,7 +16,7 @@ struct DiagnosticReport {
 
 class ReportGenerator{
 public:
-    virtual const DiagnosticReport GenerateReport() = 0;
+    virtual DiagnosticReport GenerateReport()=0;
 };
 
 #endif // REPORT_GENERATOR_H

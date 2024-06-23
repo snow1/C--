@@ -2,7 +2,6 @@
 #define SENSOR_H
 
 #include <string>
-using std::string;
 
 class Sensor {
 public:
@@ -12,6 +11,8 @@ public:
     virtual void OnInitialize();
     virtual void OnSample() = 0;
     virtual void OnTerminate();
+protected:
+    std::string name;
 };
 
 #endif // SENSOR_H
