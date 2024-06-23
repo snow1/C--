@@ -1,12 +1,9 @@
-Certainly! Here's the provided information formatted as a README file:
-
----
 
 # Sensor and Source Hierarchy
 
 ## Sensor Classes
 
-The `Sensor` class serves as an abstract base class with several derived classes, including:
+The `Sensor` class serves as an abstract base class with three derived classes, including:
 
 - `PA200`
 - `PA3XX`
@@ -45,9 +42,3 @@ A diagnostic system includes the following components:
 
 - `DiagnosticReport` struct
 - `ReportGenerator` class
-
-This system generates reports on system health and performance, categorizing issues by severity. The seamless integration of sensor data and the diagnostic reporting system ensures reliable real-time monitoring.
-
----
-
-Feel free to adjust or expand upon this README as needed! 😊
