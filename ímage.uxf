@@ -1,0 +1,106 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>260</x><y>150</y><w>120</w><h>40</h></coordinates><panel_attributes>«class» 
+PA200
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>540</y><w>370</w><h>130</h></coordinates><panel_attributes>«abstract class» 
+InertiaSource
+--
++ void RegisterInertiaReceiver( 
+std::function&lt;void(const InertiaSample&gt; callback_function)
++ const InertiaSample SampleInertia();
+--
+# virtual const InertiaSample OnSampleInertia() = 0;
+--
+- NotifySampleUpdate(const InertiaSampl&amp; new_sample) const
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>270</y><w>190</w><h>120</h></coordinates><panel_attributes>«abstract class» 
+Sensor
+--
++ Sensor(std::string sensor_name)
++ virtual ~Sensor()
++ virtual void OnInitialize()
++ virtual void OnSample() = 0
++ virtual void OnTerminate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>600</y><w>120</w><h>40</h></coordinates><panel_attributes>«struct»
+ Inertia</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>470</y><w>120</w><h>40</h></coordinates><panel_attributes>«class» 
+MTi_30_AHRS</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>310</y><w>120</w><h>40</h></coordinates><panel_attributes>«class»
+ PA33X</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>320</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>380</y><w>170</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110;150;110</additional_attributes></element><element><id>Relation</id><coordinates><x>100</x><y>150</y><w>180</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>370</y><w>370</w><h>130</h></coordinates><panel_attributes>«abstract class» 
+TempratureSource
+--
++ void RegisterTempratureReceiver( 
+std::function&lt;void(const TempratureSample&gt; callback_function)
++ const TempratureSample SampleTemprature();
+--
+# virtual const TempratureSample OnSampleTemprature() = 0;
+--
+- NotifySampleUpdate(const InertiaSampl&amp; new_sample) const
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>190</y><w>370</w><h>130</h></coordinates><panel_attributes>«abstract class» 
+PressureSource
+--
++ void RegisterPressureReceiver( 
+std::function&lt;void(const PressureSample&gt; callback_function)
++ const PressureSample SamplePressure();
+--
+# virtual const PressureSample OnSamplePressure() = 0;
+--
+- NotifySampleUpdate(const PressureSampl&amp; new_sample) const
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>0</y><w>370</w><h>130</h></coordinates><panel_attributes>«abstract class» 
+AltimeterSource
+--
++ void RegisterAltimeterReceiver( 
+std::function&lt;void(const AltimeterSample&gt; callback_function)
++ const AltimeterSample SampleAltimeter();
+--
+# virtual const AltimeterSample OnSampleInertia() = 0;
+--
+- NotifySampleUpdate(constAltimeterSample&amp; new_sample) const
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1130</x><y>100</y><w>200</w><h>130</h></coordinates><panel_attributes>«struct» 
+FlightData
+--
++ double system_depth
++ double system_height
++ double water_coulumn_depth
++ double roll
++ double pitch
++ double heading</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>420</y><w>120</w><h>40</h></coordinates><panel_attributes>«struct» 
+Temprature</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>240</y><w>120</w><h>40</h></coordinates><panel_attributes>«struct»
+ Pressure</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>880</x><y>60</y><w>120</w><h>40</h></coordinates><panel_attributes>«struct» 
+Altimeter</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>60</y><w>60</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>40;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>420</y><w>70</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>240</y><w>70</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>590</y><w>70</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>50</y><w>180</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>250</y><w>180</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>300</x><y>500</y><w>190</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;120;10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>340</y><w>180</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;100;10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1100</x><y>290</y><w>290</w><h>110</h></coordinates><panel_attributes>«class» 
+DataBridge
+--
++ const FlightData Get_FlightData() const
+--
+- void On_HeightUpdate(const AltimeterSample)
+- void On_PressureUpdate(const PressureSample) 
+- void On_InertiaUpdate(const InertiaSample)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1470</x><y>320</y><w>140</w><h>40</h></coordinates><panel_attributes>«class» 
+FlightController</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1230</x><y>220</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>60</y><w>130</w><h>270</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;90;10;90;250;110;250</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>270</y><w>190</w><h>90</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;70;80;70;10;70;170;70</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>390</y><w>270</w><h>70</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;50;250;50;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>990</x><y>390</y><w>310</w><h>250</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;230;290;230;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1380</x><y>330</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>640</y><w>340</w><h>70</h></coordinates><panel_attributes>«abstrac class» 
+ReportGenerator
+--
++  virtual const DiagnosticReporter GenerateReport() = 0;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>730</y><w>110</w><h>90</h></coordinates><panel_attributes>«enumeration» 
+ErrorLevel
+--
+Green
+Yellow,
+ Red,</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>500</y><w>150</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;140;10;40;130;40;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>340</y><w>220</w><h>320</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;300;10;100;200;100;200;10</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>80</y><w>320</w><h>580</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;560;10;10;300;10;300;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>730</y><w>220</w><h>90</h></coordinates><panel_attributes>«stuct»
+ DiagnosticReport
+--
++ has_issue : bool
++ level : ErrorLevel
++ issue_message : std::string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>770</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;20;70;20</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>670</y><w>80</w><h>80</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>60;60;60;10;10;10</additional_attributes></element></diagram>
