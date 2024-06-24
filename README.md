@@ -1,4 +1,4 @@
-# command
+# Command
 g++ PressureSource.cpp PA33X.cpp AltimeterSource.cpp PA200.cpp Sensor.cpp SensorThread.cpp InertiaSource.cpp MTi_30_AHRS.cpp DataBridge.cpp main.cpp -o main & main
 
 # FlightController

@@ -4,9 +4,8 @@
 
 using namespace std;
 
-MU
 
-DataBridge::DataBridge() {
+DataBridge::DataBridge(mutex& m): m(m) {
     inertia_source.RegisterInertiaReceiver(
         [this](const InertiaSample &sample){
             this->On_InertiaUpdate(sample);
@@ -26,7 +25,6 @@ DataBridge::DataBridge() {
 
 
 const FlightData DataBridge::GetFlightData() const{
-    cout << "GetFlightData" << endl;
     //initialize FlightData
     FlightData flight_data;
     flight_data.system_depth = 0;
@@ -39,18 +37,22 @@ const FlightData DataBridge::GetFlightData() const{
 }
 
 void DataBridge::On_HeightUpdate(const AltimeterSample &sample){
-
+    m.lock();
     cout << "Height Update: " << sample.distance << endl;
+    m.unlock();
 }
 
 void DataBridge::On_PressureUpdate(const PressureSample &sample){
-
+    m.lock();
     cout << "Pressure Update: " << sample.pressure << endl;
+    m.unlock();
 }
 
 void DataBridge::On_InertiaUpdate(const InertiaSample &sample){
     // lock
+    m.lock();
     cout << "Inertia Update: " << sample.x << endl;
+    m.unlock();
     // unlock
 }
 

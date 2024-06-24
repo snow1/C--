@@ -4,6 +4,7 @@
 #include "MTi_30_AHRS.h"
 #include "PA200.h"
 #include "PA33X.h"
+#include <mutex>
 
 
 typedef struct FlightData
@@ -20,7 +21,8 @@ public:
 class DataBridge
 {
 public:
-    DataBridge();
+    DataBridge(mutex& m);
+
     const FlightData GetFlightData() const;
     void On_HeightUpdate(const AltimeterSample &sample);
     void On_PressureUpdate(const PressureSample &sample);
@@ -32,5 +34,6 @@ public:
         MTi_30_AHRS inertia_source;
         PA200 altimeter_source;
         PA33X pressure_source;
+        mutex& m;
 };
 
