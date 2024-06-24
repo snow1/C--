@@ -14,7 +14,9 @@ using namespace std;
 
 int main() {
     cout << "DataBridge" << endl;
+    mutex m;
     DataBridge db = DataBridge();
+    this_thread::sleep_for(chrono::milliseconds(5000));
    // MTi_30_AHRS mti = MTi_30_AHRS("name");
     
 

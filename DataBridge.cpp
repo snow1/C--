@@ -4,9 +4,24 @@
 
 using namespace std;
 
-DataBridge::DataBridge(){
-    //register the DataBridge as a listener for the AltimeterSource
-    
+MU
+
+DataBridge::DataBridge() {
+    inertia_source.RegisterInertiaReceiver(
+        [this](const InertiaSample &sample){
+            this->On_InertiaUpdate(sample);
+        }
+    );
+    altimeter_source.RegisterAltimeterReceiver(
+        [this](const AltimeterSample &sample){
+            this->On_HeightUpdate(sample);
+        }
+    );
+    pressure_source.RegisterPressureReceiver(
+        [this](const PressureSample &sample){
+            this->On_PressureUpdate(sample);
+        }
+    );
 }
 
 
@@ -34,7 +49,8 @@ void DataBridge::On_PressureUpdate(const PressureSample &sample){
 }
 
 void DataBridge::On_InertiaUpdate(const InertiaSample &sample){
-
+    // lock
     cout << "Inertia Update: " << sample.x << endl;
+    // unlock
 }
 

@@ -9,9 +9,10 @@
 
 using namespace std;
 
-class MTi_30_AHRS : public Sensor, public InertiaSource{
+class MTi_30_AHRS : public Sensor, public InertiaSource {
 public:
     MTi_30_AHRS(string sensor_name);
+    MTi_30_AHRS();
     virtual void OnSample();
     virtual const InertiaSample OnSampleInertia();
 };

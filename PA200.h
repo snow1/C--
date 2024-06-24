@@ -6,13 +6,12 @@
 #include "ReportGenerator.h"
 
 
-class PA200 :public Sensor,public AltimeterSource{
-    PA200();
-    ~PA200();
-    PA200(const std::string& name);
-    virtual void OnSample();
-    virtual const AltimeterSample OnSampleAltimeter();
-        
+class PA200 :public Sensor, public AltimeterSource {
+    public:
+        PA200(const std::string& name);
+        PA200();
+        virtual void OnSample();
+        virtual const AltimeterSample OnSampleAltimeter();
 };
 
 #endif // PA200_H

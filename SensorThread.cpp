@@ -3,6 +3,9 @@
 
 using namespace std;
 
+SensorThread::SensorThread() {
+}
+
 void SensorThread::startThread(int ms, std::function<void()> callback_function){
     running = true;
     t = thread([this, ms, callback_function](){
@@ -16,7 +19,7 @@ void SensorThread::startThread(int ms, std::function<void()> callback_function){
 
     
 
-void SensorThread:: stopThread(){
+void SensorThread::stopThread() {
     running = false;
     t.join();// wait for the thread to finish
 }

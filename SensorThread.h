@@ -1,7 +1,9 @@
+#ifndef SensorThread_H
+#define SensorThread_H
+
 #include <thread>
 #include <chrono>
 #include <functional>
-#include "Sensor.h"
 #include <vector>
 using namespace std;
 
@@ -12,7 +14,9 @@ using namespace std;
         bool running;
 
     public:
+        SensorThread();
         void startThread(int ms, std::function<void()> callback_function);
-        void startThread(int ms);
         void stopThread();
-         };
+};
+
+#endif // SensorThread_H

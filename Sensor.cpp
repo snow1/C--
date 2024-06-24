@@ -7,13 +7,13 @@ Sensor::Sensor(const std::string& sensor_name, int ms) : name(sensor_name), ms(m
 }
 
 Sensor::~Sensor() {
-    //Sensor::OnTerminate();
-    //delete sensor_thread_;
+    Sensor::OnTerminate();
 }
 
 void Sensor::OnInitialize() {
     sensor_thread_->startThread(ms, [this](){
-        Sensor::OnSample();
+        // Call the OnSample method
+        this->OnSample();
     });
 }
 

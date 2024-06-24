@@ -13,16 +13,16 @@ public:
 };
 
 class AltimeterSource {
-public:
-    void RegisterAltimeterReceiver(std::function<void(const AltimeterSample)> callback_function);
-    const AltimeterSample SampleAltimeter() const;
-
-protected:
-    virtual const AltimeterSample OnSampleAltimeter() const = 0;
-
 private:
     void NotifySampleUpdate(const AltimeterSample& new_sample) const;
     vector<std::function<void(const AltimeterSample)>> callback_functions={};
+
+public:
+    void RegisterAltimeterReceiver(std::function<void(const AltimeterSample&)> callback_function);
+    const AltimeterSample SampleAltimeter();
+
+protected:
+    virtual const AltimeterSample OnSampleAltimeter() = 0;
 };
 
 #endif // ALTIMETER_SOURCE_H
