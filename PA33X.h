@@ -7,8 +7,11 @@
 #include "TemperatureSource.h"
 #include <functional>
 
-class PA33X : Sensor, PressureSource, TemperatureSource, ReportGenerator{
-
+class PA33X : public Sensor, public PressureSource{
+    PA33X();
+    PA33X(const std::string& sensor_name);
+    virtual void OnSample();
+    virtual const PressureSample OnSamplePressure();
 };
 
 #endif // PA33X_H

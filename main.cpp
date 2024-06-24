@@ -1,16 +1,27 @@
 #include <iostream>
+#include "DataBridge.h"
 #include "PA200.h"
 #include "PA33X.h"
 #include "MTi_30_AHRS.h"
-#include "DataBridge.h"
-#include "ReportGenerator.h"
 #include "Sensor.h"
 #include "AltimeterSource.h"
 #include "InertiaSource.h"
 #include "PressureSource.h"
-#include "TemperatureSource.h"
+#include <thread>
+#include <mutex>
+
 using namespace std;
 
 int main() {
-    cout << "Hello World" << std::endl;
+    cout << "DataBridge" << endl;
+    DataBridge db = DataBridge();
+   // MTi_30_AHRS mti = MTi_30_AHRS("name");
+    
+
+
+    // mutex display_mutex;
+    // display_mutex.lock();
+    // cout << "DataBridge" << endl;
+    // DataBridge db;
+    // display_mutex.unlock();
 }

@@ -2,20 +2,29 @@
 #define INERTIA_SOURCE_H
 
 #include <functional>
-#include <string>
+#include <iostream>
+#include <vector>
+
+using std::vector;
+
 struct InertiaSample {
-    // Add members as required
+    double x;
 };
 
 class InertiaSource {
-public:
-    void RegisterInertiaReceiver(std::function<void(const InertiaSample&)> callback_function);
-    const InertiaSample SampleInertia();
-
-protected:
-    virtual const double OnSampleInertia() = 0;
 private:
     void NotifySampleUpdate(const InertiaSample& new_sample) const;
+    vector<std::function<void(const InertiaSample)>> callback_functions = {};
+
+public:
+    void RegisterInertiaReceiver(std::function<void(const InertiaSample&)> callback_function);
+    const InertiaSample SampleInertia(); 
+
+protected:
+    virtual const InertiaSample OnSampleInertia() = 0;
+
+
+
 };
 
 #endif // INERTIA_SOURCE_H

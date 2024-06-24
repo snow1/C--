@@ -6,26 +6,13 @@
 #include "ReportGenerator.h"
 
 
-class PA200 : Sensor, AltimeterSource, ReportGenerator{
-
-PA200(const std::string& name);
-
-    void OnInitialize();  
-    void OnSample() override; 
-    void OnTerminate();  
-
-    void RegisterAltimeterReceiver(std::function<void(const std::string&)> callback_function); 
-    std::string SampleAltimeter();  
-    virtual DiagnosticReport GenerateReport();  
-
-
-    protected:
-    std::string OnSampleAltimeter();  
-    private:
-    void NotifySampleUpdate(const std::string& new_sample) const;  
-
-
-    
+class PA200 :public Sensor,public AltimeterSource{
+    PA200();
+    ~PA200();
+    PA200(const std::string& name);
+    virtual void OnSample();
+    virtual const AltimeterSample OnSampleAltimeter();
+        
 };
 
 #endif // PA200_H

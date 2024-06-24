@@ -1,6 +1,6 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>280</x><y>134</y><w>96</w><h>32</h></coordinates><panel_attributes>«class» 
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>315</x><y>135</y><w>108</w><h>36</h></coordinates><panel_attributes>«class» 
 PA200
-group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>446</y><w>296</w><h>104</h></coordinates><panel_attributes>«abstract class» 
+group=group-0</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>504</x><y>486</y><w>333</w><h>117</h></coordinates><panel_attributes>«abstract class» 
 InertiaSource
 --
 + void RegisterInertiaReceiver( 
@@ -12,17 +12,17 @@ std::function&lt;void(const InertiaSample&gt; callback_function)
 - NotifySampleUpdate(const InertiaSampl&amp; new_sample) const
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>88</x><y>230</y><w>152</w><h>96</h></coordinates><panel_attributes>«abstract class» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>99</x><y>243</y><w>171</w><h>108</h></coordinates><panel_attributes>«abstract class» 
 Sensor
 --
 + Sensor(std::string sensor_name)
 + virtual ~Sensor()
 + virtual void OnInitialize()
 + virtual void OnSample() = 0
-+ virtual void OnTerminate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>494</y><w>96</w><h>32</h></coordinates><panel_attributes>«struct»
- Inertia</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>272</x><y>390</y><w>96</w><h>32</h></coordinates><panel_attributes>«class» 
-MTi_30_AHRS</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>272</x><y>262</y><w>96</w><h>32</h></coordinates><panel_attributes>«class»
- PA33X</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>232</x><y>270</y><w>56</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>318</y><w>136</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110;150;110</additional_attributes></element><element><id>Relation</id><coordinates><x>152</x><y>134</y><w>144</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>310</y><w>296</w><h>104</h></coordinates><panel_attributes>«abstract class» 
++ virtual void OnTerminate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>873</x><y>540</y><w>108</w><h>36</h></coordinates><panel_attributes>«struct»
+ Inertia</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>306</x><y>423</y><w>108</w><h>36</h></coordinates><panel_attributes>«class» 
+MTi_30_AHRS</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>306</x><y>279</y><w>108</w><h>36</h></coordinates><panel_attributes>«class»
+ PA33X</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>261</x><y>288</y><w>63</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>171</x><y>342</y><w>153</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110;150;110</additional_attributes></element><element><id>Relation</id><coordinates><x>171</x><y>135</y><w>162</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>504</x><y>333</y><w>333</w><h>117</h></coordinates><panel_attributes>«abstract class» 
 TempratureSource
 --
 + void RegisterTempratureReceiver( 
@@ -34,7 +34,7 @@ std::function&lt;void(const TempratureSample&gt; callback_function)
 - NotifySampleUpdate(const InertiaSampl&amp; new_sample) const
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>448</x><y>166</y><w>296</w><h>104</h></coordinates><panel_attributes>«abstract class» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>504</x><y>171</y><w>333</w><h>117</h></coordinates><panel_attributes>«abstract class» 
 PressureSource
 --
 + void RegisterPressureReceiver( 
@@ -46,7 +46,7 @@ std::function&lt;void(const PressureSample&gt; callback_function)
 - NotifySampleUpdate(const PressureSampl&amp; new_sample) const
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>14</y><w>296</w><h>104</h></coordinates><panel_attributes>«abstract class» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>0</y><w>333</w><h>117</h></coordinates><panel_attributes>«abstract class» 
 AltimeterSource
 --
 + void RegisterAltimeterReceiver( 
@@ -58,7 +58,7 @@ std::function&lt;void(const AltimeterSample&gt; callback_function)
 - NotifySampleUpdate(constAltimeterSample&amp; new_sample) const
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>976</x><y>94</y><w>160</w><h>104</h></coordinates><panel_attributes>«struct» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1098</x><y>90</y><w>180</w><h>117</h></coordinates><panel_attributes>«struct» 
 FlightData
 --
 + double system_depth
@@ -66,14 +66,14 @@ FlightData
 + double water_coulumn_depth
 + double roll
 + double pitch
-+ double heading</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>350</y><w>96</w><h>32</h></coordinates><panel_attributes>«struct» 
-Temprature</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>206</y><w>96</w><h>32</h></coordinates><panel_attributes>«struct»
- Pressure</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>62</y><w>96</w><h>32</h></coordinates><panel_attributes>«struct» 
-Altimeter</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>744</x><y>62</y><w>48</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>40;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>350</y><w>56</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>206</y><w>56</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>486</y><w>56</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>54</y><w>144</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>214</y><w>144</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>414</y><w>152</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;120;10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>286</y><w>144</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;100;10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>952</x><y>246</y><w>232</w><h>88</h></coordinates><panel_attributes>«class» 
++ double heading</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>873</x><y>378</y><w>108</w><h>36</h></coordinates><panel_attributes>«struct» 
+Temprature</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>873</x><y>216</y><w>108</w><h>36</h></coordinates><panel_attributes>«struct»
+ Pressure</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>873</x><y>54</y><w>108</w><h>36</h></coordinates><panel_attributes>«struct» 
+Altimeter</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>837</x><y>54</y><w>54</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>40;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>828</x><y>378</y><w>63</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>828</x><y>216</y><w>63</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>828</x><y>531</y><w>63</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>50;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>45</y><w>162</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>225</y><w>162</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>450</y><w>171</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;120;10;120;10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>306</y><w>162</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;100;10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>261</y><w>261</w><h>99</h></coordinates><panel_attributes>«class» 
 DataBridge
 --
 + const FlightData Get_FlightData() const
@@ -81,26 +81,26 @@ DataBridge
 - void On_HeightUpdate(const AltimeterSample)
 - void On_PressureUpdate(const PressureSample) 
 - void On_InertiaUpdate(const InertiaSample)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1248</x><y>270</y><w>112</w><h>32</h></coordinates><panel_attributes>«class» 
-FlightController</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1056</x><y>190</y><w>24</w><h>72</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>62</y><w>104</w><h>216</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;10;90;10;90;250;110;250</additional_attributes></element><element><id>Relation</id><coordinates><x>816</x><y>230</y><w>152</w><h>72</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;10;10;70;80;70;10;70;170;70</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>326</y><w>216</w><h>56</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;50;250;50;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>326</y><w>248</w><h>200</h></coordinates><panel_attributes>lt=&lt;.
-</panel_attributes><additional_attributes>10;230;290;230;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1176</x><y>278</y><w>88</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>526</y><w>272</w><h>56</h></coordinates><panel_attributes>«abstrac class» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1404</x><y>288</y><w>126</w><h>36</h></coordinates><panel_attributes>«class» 
+FlightController</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1188</x><y>198</y><w>27</w><h>81</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>972</x><y>54</y><w>117</w><h>243</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;90;10;90;250;110;250</additional_attributes></element><element><id>Relation</id><coordinates><x>918</x><y>243</y><w>171</w><h>81</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;10;10;70;80;70;10;70;170;70</additional_attributes></element><element><id>Relation</id><coordinates><x>972</x><y>351</y><w>243</w><h>63</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;50;250;50;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>972</x><y>351</y><w>279</w><h>225</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;230;290;230;290;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1323</x><y>297</y><w>99</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>90</x><y>576</y><w>306</w><h>63</h></coordinates><panel_attributes>«abstrac class» 
 ReportGenerator
 --
 +  virtual const DiagnosticReporter GenerateReport() = 0;
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>598</y><w>88</w><h>72</h></coordinates><panel_attributes>«enumeration» 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>162</x><y>657</y><w>99</w><h>81</h></coordinates><panel_attributes>«enumeration» 
 ErrorLevel
 --
 Green
 Yellow,
- Red,</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>192</x><y>414</y><w>120</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;140;10;40;130;40;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>136</x><y>286</y><w>176</w><h>256</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;300;10;100;200;100;200;10</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>78</y><w>256</w><h>464</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;560;10;10;300;10;300;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>598</y><w>176</w><h>72</h></coordinates><panel_attributes>«stuct»
+ Red,</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>216</x><y>450</y><w>135</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;140;10;40;130;40;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>153</x><y>306</y><w>198</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;300;10;100;200;100;200;10</additional_attributes></element><element><id>Relation</id><coordinates><x>81</x><y>72</y><w>288</w><h>522</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;560;10;10;300;10;300;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>315</x><y>657</y><w>198</w><h>81</h></coordinates><panel_attributes>«stuct»
  DiagnosticReport
 --
 + has_issue : bool
 + level : ErrorLevel
-+ issue_message : std::string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>224</x><y>630</y><w>72</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
-</panel_attributes><additional_attributes>10;20;70;20</additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>550</y><w>64</w><h>64</h></coordinates><panel_attributes>lt=&lt;.
++ issue_message : std::string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>252</x><y>693</y><w>81</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;20;70;20</additional_attributes></element><element><id>Relation</id><coordinates><x>387</x><y>603</y><w>72</w><h>72</h></coordinates><panel_attributes>lt=&lt;.
 </panel_attributes><additional_attributes>60;60;60;10;10;10</additional_attributes></element></diagram>

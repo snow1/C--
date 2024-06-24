@@ -2,6 +2,10 @@
 #define ALTIMETER_SOURCE_H
 
 #include <functional>
+#include <vector>
+#include <iostream>
+
+using std::vector;
 
 struct AltimeterSample {
 public:
@@ -18,6 +22,7 @@ protected:
 
 private:
     void NotifySampleUpdate(const AltimeterSample& new_sample) const;
+    vector<std::function<void(const AltimeterSample)>> callback_functions={};
 };
 
 #endif // ALTIMETER_SOURCE_H
