@@ -1,28 +1,26 @@
-#ifndef SensorThread_H
-#define SensorThread_H
+#ifndef SENSOR_THREAD_H
+#define SENSOR_THREAD_H
 
+#include <memory>
+#include <thread>
+#include <atomic>
 #include "Sensor.h"
 
-#include <thread>
-#include <chrono>
-#include <functional>
-#include <vector>
-#include <atomic>
-using namespace std;
+class SensorThread {
+public:
+    SensorThread(std::unique_ptr<Sensor> sensor_ptr);
+    SensorThread();
+    ~SensorThread();
 
- class SensorThread
- {
-    private:
-        atomic<bool> running;
-        unique_ptr<Sensor> sensor_uni;
-        thread thread;
-        void ThreadLoop();
+    void StartThread();
+    void StopThread();
 
-    public:
-        SensorThread(unique_ptr<Sensor> sensor_ptr);
-        ~SensorThread();
-        void StartThread();
-        void StopThread();
+private:
+    std::unique_ptr<Sensor> sensor;
+    std::atomic<bool> running;
+    std::thread sampling_thread;
+
+    void SampleLoop();
 };
 
-#endif // SensorThread_H
+#endif // SENSOR_THREAD_H

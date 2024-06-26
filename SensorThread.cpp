@@ -1,40 +1,48 @@
 #include "SensorThread.h"
-#include <iostream>
 #include <chrono>
-#include <thread>
+#include <iostream>
+
+SensorThread::SensorThread(std::unique_ptr<Sensor> sensor_ptr)
+    : sensor(std::move(sensor_ptr)) {}
+
+SensorThread::SensorThread() {}
 
 
-SensorThread::SensorThread(unique_ptr<Sensor> sensor_ptr) : sensor_uni(move(sensor_ptr)), running(false) {
-}
-
-
-SensorThread::~SensorThread(){
-    cout << "Thread stopped" << endl;
+SensorThread::~SensorThread() {
     StopThread();
 }
 
 void SensorThread::StartThread() {
-    running = true;
-    thread = std::thread(&SensorThread::ThreadLoop, this);
+    if (!running.exchange(true)) {
+        sampling_thread = std::thread(&SensorThread::SampleLoop, this);
+    }
 }
 
 void SensorThread::StopThread() {
     running = false;
-    if (thread.joinable()) {
-        thread.join();
+    if (sampling_thread.joinable()) {
+        sampling_thread.join();
     }
 }
 
-void SensorThread::ThreadLoop() {
-    sensor_uni->OnInitialize();
+void SensorThread::SampleLoop() {
+    sensor->OnInitialize();
 
     while (running) {
-        sensor_uni->OnSample();
-       // std::this_thread::sleep_for(std::chrono::milliseconds(sensor_uni->ms));
+        std::this_thread::sleep_for(std::chrono::milliseconds(sensor->GetSampleInterval()));
+        sensor->OnSample();
+
+        // Simulate failure after 10 samples
+        static int sample_count = 0;
+        if (++sample_count >= 10) {
+            std::cout << sensor->GetName() << " reporting failure after 10 samples." << std::endl;
+            break;
+        }
     }
 
-    sensor_uni->OnTerminate();
+    sensor->OnTerminate();
 }
+
 
 // void SensorThread::startThread(){
 //     t = thread([this]() {

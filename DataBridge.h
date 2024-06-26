@@ -30,8 +30,7 @@ private:
     PA200& altimeter_source;
     //PA33X& pressure_source;
     unique_ptr<PA33X> pressure_source;
-
-
-    std::unique_ptr<SensorThread> pressure_thread;
+    unique_ptr<SensorThread> pressure_thread;
+    
     mutex& m;
 };

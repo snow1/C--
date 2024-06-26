@@ -8,10 +8,13 @@ using namespace std;
 DataBridge::DataBridge(mutex& m, MTi_30_AHRS& inertia, PA200& altimeter, unique_ptr<PA33X> pressure)
 :m(m), inertia_source(inertia), altimeter_source(altimeter), pressure_source(move(pressure)){
     cout << "DataBridge Constructor" <<endl;
+
     pressure_source->RegisterPressureReceiver(
        bind(&DataBridge::On_PressureUpdate, this, placeholders::_1)
     );
-    pressure_thread = std::make_unique<SensorThread>(move(pressure_source));
+
+    pressure_thread = make_unique<SensorThread>(move(pressure_source));
+    
     pressure_thread->StartThread();
 
 

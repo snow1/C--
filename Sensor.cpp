@@ -1,13 +1,16 @@
 #include "Sensor.h"
-#include <iostream>
 
-Sensor::Sensor(const std::string& sensor_name, int ms) : name(sensor_name), ms(ms) {
+
+Sensor::Sensor(const std::string& sensor_name, int ms): name(sensor_name), ms(ms) {}
+
+
+void Sensor::OnInitialize() {}
+void Sensor::OnTerminate() {}
+
+const std::string& Sensor::GetName() const {
+    return name;
 }
 
-void Sensor::OnInitialize() {
-    std::cout << name << " initialized with sampling rate: " << ms << " ms." << std::endl;
-}
-
-void Sensor::OnTerminate() {
-    std::cout << name << " terminated." << std::endl;
+int Sensor::GetSampleInterval() const {
+    return ms;
 }

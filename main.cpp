@@ -16,12 +16,12 @@ int main() {
 
     MTi_30_AHRS inertia;
     PA200 altimeter;
-   // PA33X pressure_source("PA33X"); // Sampling every 2000 ms (2 seconds)
+    //PA33X pressure_source("PA33X",2); // Sampling every 2000 ms (2 seconds)
 
     DataBridge dataBridge(m, inertia, altimeter, move(pressure_source));
 
     // Simulate the main thread work
-    std::this_thread::sleep_for(std::chrono::seconds(25));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     cout<< inertia.OnSampleInertia().x << endl;
 
@@ -33,7 +33,6 @@ int main() {
             
     //         this_thread::sleep_for(chrono::milliseconds(500));
     //     }
-   this_thread::sleep_for(chrono::milliseconds(5000));
    return 0;
     
 }
