@@ -1,5 +1,4 @@
 #include "InertiaSource.h"
-#include <iostream>
 
 using namespace std;
 
@@ -9,7 +8,7 @@ void InertiaSource::RegisterInertiaReceiver(std::function<void(const InertiaSamp
 }
 
 const InertiaSample InertiaSource:: SampleInertia() {
-    InertiaSample sample = OnSampleInertia();
+    struct InertiaSample sample = OnSampleInertia();
     NotifySampleUpdate(sample);
     return sample;
 }

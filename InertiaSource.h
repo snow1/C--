@@ -5,8 +5,6 @@
 #include <iostream>
 #include <vector>
 
-using std::vector;
-
 struct InertiaSample {
     double x;
 };
@@ -14,7 +12,7 @@ struct InertiaSample {
 class InertiaSource {
 private:
     void NotifySampleUpdate(const InertiaSample& new_sample) const;
-    vector<std::function<void(const InertiaSample)>> callback_functions = {};
+    std::vector<std::function<void(const InertiaSample)>> callback_functions = {};
 
 public:
     void RegisterInertiaReceiver(std::function<void(const InertiaSample&)> callback_function);

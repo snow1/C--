@@ -1,10 +1,10 @@
 #include "PA200.h"
 
-PA200::PA200(const std::string& name) : Sensor(name, 3000){
+PA200::PA200(const std::string& name) : Sensor(name, 3){
     
 }
 
-PA200::PA200() : Sensor("PA200", 3000){
+PA200::PA200() : Sensor("PA200", 3){
     
 }
 
@@ -13,7 +13,7 @@ void PA200::OnSample(){
 }
 
 const AltimeterSample PA200::OnSampleAltimeter(){
-    AltimeterSample sample;
+    struct AltimeterSample sample;
     sample.distance = 200;
     return sample;
 }

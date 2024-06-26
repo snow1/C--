@@ -1,5 +1,4 @@
 #include "AltimeterSource.h"
-#include <iostream>
 #include <functional>
 using namespace std;
 

@@ -5,7 +5,9 @@ void PressureSource::RegisterPressureReceiver(std::function<void(const PressureS
 }
 
 const PressureSample PressureSource:: SamplePressure() {
-    PressureSample sample;
+
+    struct PressureSample sample;
+
     sample = OnSamplePressure();
     NotifySampleUpdate(sample);
     return sample;

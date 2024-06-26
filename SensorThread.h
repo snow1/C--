@@ -7,19 +7,22 @@
 #include <chrono>
 #include <functional>
 #include <vector>
+#include <atomic>
 using namespace std;
 
  class SensorThread
  {
     private:
-        bool running;
-        unique_ptr<Sensor> sensor_ptr;
+        atomic<bool> running;
+        unique_ptr<Sensor> sensor_uni;
+        thread thread;
+        void ThreadLoop();
 
     public:
         SensorThread(unique_ptr<Sensor> sensor_ptr);
-        ~SensorThread() = default;
-        void startThread();
-        void stopThread();
+        ~SensorThread();
+        void StartThread();
+        void StopThread();
 };
 
 #endif // SensorThread_H
