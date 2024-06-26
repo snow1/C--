@@ -1,14 +1,13 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 
-
-#include "SensorThread.h"
+#include <thread>
 #include <chrono>
 #include <string>
-#include <thread>
 
 class Sensor {
 public:
+    Sensor();
     Sensor(const std::string& sensor_name, int ms);
     ~Sensor();
 
@@ -17,7 +16,7 @@ public:
     virtual void OnTerminate();
 protected:
     std::string name;
-    SensorThread* sensor_thread_;
+    std::thread t;
     int ms;
 };
 

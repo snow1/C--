@@ -29,8 +29,6 @@ public:
     void On_InertiaUpdate(const InertiaSample &sample);
 
     private:
-        // AltimeterSource altimeter_source;
-        // PressureSource pressure_source;
         MTi_30_AHRS inertia_source;
         PA200 altimeter_source;
         PA33X pressure_source;

@@ -1,6 +1,8 @@
 #ifndef SensorThread_H
 #define SensorThread_H
 
+#include "Sensor.h"
+
 #include <thread>
 #include <chrono>
 #include <functional>
@@ -10,12 +12,13 @@ using namespace std;
  class SensorThread
  {
     private:
-        thread t;
         bool running;
+        unique_ptr<Sensor> sensor_ptr;
 
     public:
-        SensorThread();
-        void startThread(int ms, std::function<void()> callback_function);
+        SensorThread(unique_ptr<Sensor> sensor_ptr);
+        ~SensorThread() = default;
+        void startThread();
         void stopThread();
 };
 

@@ -1,25 +1,27 @@
 #include "SensorThread.h"
 #include<iostream>
 
-using namespace std;
 
-SensorThread::SensorThread() {
+SensorThread::SensorThread(unique_ptr<Sensor> sensor_ptr) : sensor_ptr(move(sensor_ptr)), running(false) {
+
 }
 
-void SensorThread::startThread(int ms, std::function<void()> callback_function){
+void SensorThread::startThread(){
     running = true;
-    t = thread([this, ms, callback_function](){
+    try{
+        sensor_ptr->OnInitialize();
         while(running){
-            callback_function();
-            this_thread::sleep_for(chrono::milliseconds(ms));
-           // cout << "Thread is running" << endl;
+            sensor_ptr->OnSample();
         }
-    });
+    }
+    catch(exception& e){
+        cout << "Exception: " << e.what() << endl;
+    }
+    sensor_ptr->OnTerminate();
 }
 
     
 
 void SensorThread::stopThread() {
     running = false;
-    t.join();// wait for the thread to finish
 }

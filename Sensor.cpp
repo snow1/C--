@@ -1,23 +1,30 @@
 #include "Sensor.h"
 using namespace std;
 
-Sensor::Sensor(const std::string& sensor_name, int ms) : name(sensor_name), ms(ms){
-    sensor_thread_ = new SensorThread();
-    Sensor::OnInitialize();
+Sensor::Sensor() {    
 }
 
+
+Sensor::Sensor(const std::string& sensor_name, int ms) : name(sensor_name), ms(ms){
+    
+}
+
+
 Sensor::~Sensor() {
-    Sensor::OnTerminate();
+    
 }
 
 void Sensor::OnInitialize() {
-    sensor_thread_->startThread(ms, [this](){
-        // Call the OnSample method
-        this->OnSample();
+    t = thread([this](){
+        while (true) {
+            this->OnSample();
+            this_thread::sleep_for(chrono::milliseconds(ms));
+        }
     });
+
 }
 
 void Sensor::OnTerminate() {
-    sensor_thread_->stopThread();
+    t.join();
 }
 

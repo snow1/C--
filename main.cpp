@@ -11,21 +11,25 @@
 #include <mutex>
 
 using namespace std;
+mutex m;
 
 int main() {
-    cout << "DataBridge" << endl;
-    mutex m;
-    DataBridge db = DataBridge(m);
+    cout << "Hi" << endl;
+    DataBridge db(m);
     AltimeterSample as;
     InertiaSample is;
     PressureSample ps;
-
     while (true) {
-        FlightData fd = db.GetFlightData();
-        m.lock();
-        cout << "System: { " << fd.system_depth << ", " << fd.system_height << ", " << fd.water_column_depth << ", " << fd.roll << ", " << fd.pitch << ", " << fd.heading << " }" << endl;
-        m.unlock();
-        this_thread::sleep_for(chrono::milliseconds(500));
-    }
+            FlightData fd = db.GetFlightData();
+            m.lock();
+            cout << "System: { " << fd.system_depth << ", " << fd.system_height << ", " << fd.water_column_depth << ", " << fd.roll << ", " << fd.pitch << ", " << fd.heading << " }" << endl;
+            m.unlock();
+            db.On_HeightUpdate(as);
+            db.On_InertiaUpdate(is);
+            db.On_PressureUpdate(ps);
+            
+            this_thread::sleep_for(chrono::milliseconds(500));
+        }
+   
     
 }

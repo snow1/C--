@@ -7,19 +7,13 @@ using namespace std;
 
 DataBridge::DataBridge(mutex& m): m(m) {
     inertia_source.RegisterInertiaReceiver(
-        [this](const InertiaSample &sample){
-            this->On_InertiaUpdate(sample);
-        }
+        bind(&DataBridge::On_InertiaUpdate, this, placeholders::_1)
     );
     altimeter_source.RegisterAltimeterReceiver(
-        [this](const AltimeterSample &sample){
-            this->On_HeightUpdate(sample);
-        }
+        bind(&DataBridge::On_HeightUpdate, this, placeholders::_1)
     );
     pressure_source.RegisterPressureReceiver(
-        [this](const PressureSample &sample){
-            this->On_PressureUpdate(sample);
-        }
+       bind(&DataBridge::On_PressureUpdate, this, placeholders::_1)
     );
 }
 
@@ -49,10 +43,8 @@ void DataBridge::On_PressureUpdate(const PressureSample &sample){
 }
 
 void DataBridge::On_InertiaUpdate(const InertiaSample &sample){
-    // lock
     m.lock();
     cout << "Inertia Update: " << sample.x << endl;
     m.unlock();
-    // unlock
 }
 
