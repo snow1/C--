@@ -14,16 +14,14 @@ mutex m;
 int main() { 
     auto pressure_source = make_unique<PA33X>();
 
-    MTi_30_AHRS inertia;
-    PA200 altimeter;
-    //PA33X pressure_source("PA33X",2); // Sampling every 2000 ms (2 seconds)
+    auto inertia_source = make_unique<MTi_30_AHRS>();
+    auto altimeter_source = make_unique<PA200>();
 
-    DataBridge dataBridge(m, inertia, altimeter, move(pressure_source));
+
+    DataBridge dataBridge(m, move(inertia_source), move(altimeter_source), move(pressure_source));
 
     // Simulate the main thread work
     this_thread::sleep_for(chrono::milliseconds(500));
-
-    cout<< inertia.OnSampleInertia().x << endl;
 
     // while (true) {
     //         FlightData fd = db.GetFlightData();

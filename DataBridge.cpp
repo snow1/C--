@@ -5,8 +5,8 @@
 using namespace std;
 
 
-DataBridge::DataBridge(mutex& m, MTi_30_AHRS& inertia, PA200& altimeter, unique_ptr<PA33X> pressure)
-:m(m), inertia_source(inertia), altimeter_source(altimeter), pressure_source(move(pressure)){
+DataBridge::DataBridge(mutex& m, unique_ptr<MTi_30_AHRS> inertia, unique_ptr<PA200> altimeter, unique_ptr<PA33X> pressure)
+:m(m), inertia_source(move(inertia)), altimeter_source(move(altimeter)), pressure_source(move(pressure)){
     cout << "DataBridge Constructor" <<endl;
 
     pressure_source->RegisterPressureReceiver(
@@ -14,18 +14,20 @@ DataBridge::DataBridge(mutex& m, MTi_30_AHRS& inertia, PA200& altimeter, unique_
     );
 
     pressure_thread = make_unique<SensorThread>(move(pressure_source));
-    
     pressure_thread->StartThread();
 
 
-
-
-    inertia.RegisterInertiaReceiver(
-        [this](const InertiaSample& sample){this->On_InertiaUpdate(sample);}
+    inertia_source->RegisterInertiaReceiver(
+        bind(&DataBridge::On_InertiaUpdate, this, placeholders::_1)
     );
-    altimeter.RegisterAltimeterReceiver(
-        [this](const AltimeterSample& sample){this->On_HeightUpdate(sample);}   
+    inertia_thread = make_unique<SensorThread>(move(inertia_source));
+    inertia_thread->StartThread();
+
+    altimeter_source->RegisterAltimeterReceiver(
+        bind(&DataBridge::On_HeightUpdate, this, placeholders::_1)
     );
+    altimeter_thread = make_unique<SensorThread>(move(altimeter_source));
+    altimeter_thread->StartThread();
 
    
 }
