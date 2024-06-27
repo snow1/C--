@@ -4,7 +4,7 @@
 #include "PA200.h"
 #include "PA33X.h"
 
-typedef struct FlightData
+struct FlightData
 {
 public:
     double system_depth;
@@ -13,7 +13,7 @@ public:
     double roll;
     double pitch;
     double heading;
-}FlightData;
+};
 
 class DataBridge
 {

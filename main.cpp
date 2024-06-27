@@ -19,9 +19,13 @@ int main() {
 
 
     DataBridge dataBridge(m, move(inertia_source), move(altimeter_source), move(pressure_source));
+    m.lock();
+     dataBridge.GetFlightData();
+    m.unlock();
 
     // Simulate the main thread work
-    this_thread::sleep_for(chrono::milliseconds(500));
+    //main thread calls every 500ms?
+    this_thread::sleep_for(chrono::milliseconds(50000));
 
     // while (true) {
     //         FlightData fd = db.GetFlightData();

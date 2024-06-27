@@ -31,13 +31,6 @@ void SensorThread::SampleLoop() {
     while (running) {
         std::this_thread::sleep_for(std::chrono::milliseconds(sensor->GetSampleInterval()));
         sensor->OnSample();
-
-        // Simulate failure after 10 samples
-        static int sample_count = 0;
-        if (++sample_count >= 10) {
-            std::cout << sensor->GetName() << " reporting failure after 10 samples." << std::endl;
-            break;
-        }
     }
 
     sensor->OnTerminate();
