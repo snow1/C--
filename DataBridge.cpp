@@ -42,9 +42,9 @@ const FlightData DataBridge::GetFlightData() const{
     flight_data.roll = 0;
     flight_data.pitch = 0;
     flight_data.heading = 0;
-    //m.lock();
+    m.lock();
     cout << "System: { " << flight_data.system_depth << ", " << flight_data.system_height << ", " << flight_data.water_column_depth << ", " << flight_data.roll << ", " << flight_data.pitch << ", " << flight_data.heading << " }" << endl;
-    //m.unlock();
+    m.unlock();
     return flight_data;
 }
 

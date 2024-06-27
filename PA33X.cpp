@@ -14,27 +14,11 @@ using namespace std;
 
 PA33X::PA33X() : Sensor("PA33X", 2000) {
     cout<<"PA33X"<<endl;
-    sensor_thread.StartThread();
     
 }
 
 PA33X::PA33X(const std::string& sensor_name, int ms) : Sensor(sensor_name, ms){
     cout<<"PA33X11"<<endl;
-
-    sensor_thread.StartThread();
-}
-
-
-PA33X::~PA33X() {
-}
-
-void PA33X::OnInitialize() {
-    
-}
-
-
-void PA33X::OnTerminate() {
-
 }
 
 void PA33X::OnSample(){

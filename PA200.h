@@ -13,9 +13,6 @@ class PA200 :public Sensor, public AltimeterSource {
         PA200();
         virtual void OnSample();
         virtual const AltimeterSample OnSampleAltimeter();
-
-    private:
-        SensorThread sensor_thread;
 };
 
 #endif // PA200_H

@@ -3,9 +3,8 @@
 #include <iostream>
 
 SensorThread::SensorThread(std::unique_ptr<Sensor> sensor_ptr)
-    : sensor(std::move(sensor_ptr)) {}
-
-SensorThread::SensorThread() {}
+    : sensor(std::move(sensor_ptr)), running(false) {
+    }
 
 
 SensorThread::~SensorThread() {

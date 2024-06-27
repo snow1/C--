@@ -9,7 +9,6 @@
 class SensorThread {
 public:
     SensorThread(std::unique_ptr<Sensor> sensor_ptr);
-    SensorThread();
     ~SensorThread();
 
     void StartThread();

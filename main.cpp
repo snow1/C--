@@ -19,22 +19,18 @@ int main() {
 
 
     DataBridge dataBridge(m, move(inertia_source), move(altimeter_source), move(pressure_source));
-    m.lock();
-     dataBridge.GetFlightData();
-    m.unlock();
+    // m.lock();
+    // dataBridge.GetFlightData();
+    // m.unlock();
 
     // Simulate the main thread work
     //main thread calls every 500ms?
-    this_thread::sleep_for(chrono::milliseconds(50000));
 
-    // while (true) {
-    //         FlightData fd = db.GetFlightData();
-    //         m.lock();
-    //         cout << "System: { " << fd.system_depth << ", " << fd.system_height << ", " << fd.water_column_depth << ", " << fd.roll << ", " << fd.pitch << ", " << fd.heading << " }" << endl;
-    //         m.unlock();
-            
-    //         this_thread::sleep_for(chrono::milliseconds(500));
-    //     }
+    while (true) {
+            FlightData fd = dataBridge.GetFlightData();    
+            this_thread::sleep_for(chrono::milliseconds(5000));
+        }
    return 0;
     
 }
+// 
