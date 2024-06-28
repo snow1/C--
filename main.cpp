@@ -1,36 +1,46 @@
-#include <iostream>
+// main.cpp
 #include "DataBridge.h"
-#include "PA200.h"
 #include "PA33X.h"
+#include "PA200.h"
 #include "MTi_30_AHRS.h"
-
-#include <thread>
+#include "SensorThread.h"
 #include <mutex>
-#include <memory>
+#include <vector>
 
-using namespace std;
-mutex m;
+std::mutex m;
 
-int main() { 
-    auto pressure_source = make_unique<PA33X>();
+int main() {
 
-    auto inertia_source = make_unique<MTi_30_AHRS>();
-    auto altimeter_source = make_unique<PA200>();
+    auto inertia_sensor = std::make_shared<MTi_30_AHRS>("MTi_30_AHRS", 1000);
+    auto altimeter_sensor = std::make_shared<PA200>("PA200", 3000);
+    auto pressure_sensor = std::make_shared<PA33X>("PA33X", 2000);
 
+    DataBridge data_bridge(m, inertia_sensor, altimeter_sensor, pressure_sensor);
 
-    DataBridge dataBridge(m, move(inertia_source), move(altimeter_source), move(pressure_source));
-    // m.lock();
-    // dataBridge.GetFlightData();
-    // m.unlock();
+    std::vector<std::shared_ptr<SensorThread>> sensor_threads;
+    sensor_threads.push_back(std::make_shared<SensorThread>(inertia_sensor));
+    sensor_threads.push_back(std::make_shared<SensorThread>(altimeter_sensor));
+    sensor_threads.push_back(std::make_shared<SensorThread>(pressure_sensor));
 
-    // Simulate the main thread work
-    //main thread calls every 500ms?
-
-    while (true) {
-            FlightData fd = dataBridge.GetFlightData();    
-            this_thread::sleep_for(chrono::milliseconds(5000));
+    while (true)
+    {
+        for (auto &thread : sensor_threads)
+        {
+            thread->StartThread();
         }
-   return 0;
-    
+
+        // Simulate the main loop
+        for (int i = 0; i < 10; ++i)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            data_bridge.GetFlightData();
+        }
+
+        for (auto &thread : sensor_threads)
+        {
+            thread->StopThread();
+        }
+    }
+
+    return 0;
 }
-// 

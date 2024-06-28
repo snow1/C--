@@ -9,10 +9,14 @@
 
 class PA200 :public Sensor, public AltimeterSource {
     public:
-        PA200(const std::string& name);
-        PA200();
+        PA200(const std::string& name, int ms);
+        PA200() = default;
         virtual void OnSample();
         virtual const AltimeterSample OnSampleAltimeter();
+        void OnInitialize() override;
+        void OnTerminate() override;
+    private:
+        int sampling_interval;
 };
 
 #endif // PA200_H

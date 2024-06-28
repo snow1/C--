@@ -2,8 +2,8 @@
 #include <chrono>
 #include <iostream>
 
-SensorThread::SensorThread(std::unique_ptr<Sensor> sensor_ptr)
-    : sensor(std::move(sensor_ptr)), running(false) {
+SensorThread::SensorThread(std::shared_ptr<Sensor> sensor_ptr)
+    : sensor(sensor_ptr), running(false) {
     }
 
 
@@ -28,7 +28,7 @@ void SensorThread::SampleLoop() {
     sensor->OnInitialize();
 
     while (running) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(sensor->GetSampleInterval()));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         sensor->OnSample();
     }
 

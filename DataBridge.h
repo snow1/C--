@@ -1,9 +1,13 @@
-#include <mutex>
-#include "SensorThread.h"
-#include "MTi_30_AHRS.h"
-#include "PA200.h"
-#include "PA33X.h"
+// DataBridge.h
+#ifndef DATABRIDGE_H
+#define DATABRIDGE_H
 
+#include <mutex>
+#include <memory> // Add this line to include the <memory> header file
+#include "SensorThread.h"
+#include "AltimeterSource.h"
+#include "PressureSource.h"
+#include "InertiaSource.h"
 struct FlightData
 {
 public:
@@ -14,25 +18,22 @@ public:
     double pitch;
     double heading;
 };
-
-class DataBridge
-{
+class DataBridge {
 public:
-    DataBridge(mutex& m, unique_ptr<MTi_30_AHRS> inertia, unique_ptr<PA200> altimeter, unique_ptr<PA33X> pressure);
-
+    DataBridge(std::mutex& m, std::shared_ptr<InertiaSource> inertia, std::shared_ptr<AltimeterSource> altimeter, std::shared_ptr<PressureSource> pressure);
     const FlightData GetFlightData() const;
+   
+
+private:
+    std::shared_ptr<InertiaSource> inertia_source;
+    std::shared_ptr<AltimeterSource> altimeter_source;
+    std::shared_ptr<PressureSource> pressure_source;
+    std::mutex& m;
+
     void On_HeightUpdate(const AltimeterSample &sample);
     void On_PressureUpdate(const PressureSample &sample);
     void On_InertiaUpdate(const InertiaSample &sample);
-
-private:
-    unique_ptr<MTi_30_AHRS> inertia_source;
-    unique_ptr<PA200> altimeter_source;
-    unique_ptr<PA33X> pressure_source;
-
-    unique_ptr<SensorThread> inertia_thread;
-    unique_ptr<SensorThread> altimeter_thread;
-    unique_ptr<SensorThread> pressure_thread;
-    
-    mutex& m;
 };
+
+#endif // DATABRIDGE_H
+

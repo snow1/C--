@@ -11,10 +11,14 @@
 
 class PA33X : public Sensor, public PressureSource{
     public:
-        PA33X();
+        PA33X()=default;
         PA33X(const std::string& sensor_name, int ms);
         virtual void OnSample();
         virtual const PressureSample OnSamplePressure();
+        void OnInitialize() override;
+        void OnTerminate() override;
+    private:
+        int sampling_interval;
 };
 
 #endif // PA33X_H

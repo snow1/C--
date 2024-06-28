@@ -8,14 +8,14 @@
 
 class SensorThread {
 public:
-    SensorThread(std::unique_ptr<Sensor> sensor_ptr);
+    SensorThread(std::shared_ptr<Sensor> sensor_ptr);
     ~SensorThread();
 
     void StartThread();
     void StopThread();
 
 private:
-    std::unique_ptr<Sensor> sensor;
+    std::shared_ptr<Sensor> sensor;
     std::atomic<bool> running;
     std::thread sampling_thread;
 
