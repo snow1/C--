@@ -22,19 +22,15 @@ int main() {
     sensor_threads.push_back(std::make_shared<SensorThread>(altimeter_sensor));
     sensor_threads.push_back(std::make_shared<SensorThread>(pressure_sensor));
 
+
     while (true)
     {
         for (auto &thread : sensor_threads)
         {
             thread->StartThread();
         }
-
-        // Simulate the main loop
-        for (int i = 0; i < 10; ++i)
-        {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            data_bridge.GetFlightData();
-        }
+        data_bridge.GetFlightData();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
         for (auto &thread : sensor_threads)
         {

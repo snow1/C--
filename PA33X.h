@@ -8,6 +8,7 @@
 #include <functional>
 #include <thread>
 #include <atomic>
+#include <random>
 
 class PA33X : public Sensor, public PressureSource{
     public:
@@ -19,6 +20,8 @@ class PA33X : public Sensor, public PressureSource{
         void OnTerminate() override;
     private:
         int sampling_interval;
+        std::default_random_engine generator; // Random number generator
+        std::uniform_real_distribution<float> distribution; // Distribution for random numbers
 };
 
 #endif // PA33X_H

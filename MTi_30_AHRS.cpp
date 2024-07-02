@@ -1,8 +1,7 @@
 #include "MTi_30_AHRS.h"
-#include <iostream>
 using namespace std;
 
-MTi_30_AHRS::MTi_30_AHRS(string sensor_name, int ms): Sensor(sensor_name), sampling_interval(ms)
+MTi_30_AHRS::MTi_30_AHRS(string sensor_name, int ms): Sensor(sensor_name), sampling_interval(ms),distribution(0, 1.0) 
 {
 }
 
@@ -13,10 +12,11 @@ void MTi_30_AHRS::OnTerminate(){
 
 void MTi_30_AHRS::OnSample(){
     SampleInertia();
+  
 }
 
 const InertiaSample MTi_30_AHRS::OnSampleInertia(){
     InertiaSample sample;
-    sample.x = 30.f;
+    sample.x = distribution(generator);
     return sample;
 }

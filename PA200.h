@@ -3,8 +3,8 @@
 
 #include "Sensor.h"
 #include "AltimeterSource.h"
-#include "ReportGenerator.h"
-#include "SensorThread.h"
+#include <random>
+
 
 
 class PA200 :public Sensor, public AltimeterSource {
@@ -17,6 +17,8 @@ class PA200 :public Sensor, public AltimeterSource {
         void OnTerminate() override;
     private:
         int sampling_interval;
+        std::default_random_engine generator; // Random number generator
+        std::uniform_real_distribution<float> distribution; // Distribution for random numbers
 };
 
 #endif // PA200_H

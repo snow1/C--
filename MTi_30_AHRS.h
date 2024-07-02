@@ -7,6 +7,7 @@
 #include "SensorThread.h"
 #include <thread>
 #include <iostream>
+#include <random>
 
 
 using namespace std;
@@ -21,6 +22,8 @@ public:
     void OnTerminate() override;
 private:
     int sampling_interval;
+    default_random_engine generator; // Random number generator
+    uniform_real_distribution<float> distribution; // Distribution for random numbers
 };
 
 #endif // MTI_30_AHRS_H

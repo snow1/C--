@@ -8,6 +8,7 @@
 #include "AltimeterSource.h"
 #include "PressureSource.h"
 #include "InertiaSource.h"
+#include <random>
 struct FlightData
 {
 public:
@@ -21,7 +22,7 @@ public:
 class DataBridge {
 public:
     DataBridge(std::mutex& m, std::shared_ptr<InertiaSource> inertia, std::shared_ptr<AltimeterSource> altimeter, std::shared_ptr<PressureSource> pressure);
-    const FlightData GetFlightData() const;
+    const FlightData GetFlightData();
    
 
 private:
@@ -33,6 +34,7 @@ private:
     void On_HeightUpdate(const AltimeterSample &sample);
     void On_PressureUpdate(const PressureSample &sample);
     void On_InertiaUpdate(const InertiaSample &sample);
+    FlightData flight_data;
 };
 
 #endif // DATABRIDGE_H
