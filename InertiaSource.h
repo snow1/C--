@@ -7,6 +7,8 @@
 
 struct InertiaSample {
     double x;
+    double y;
+    double z;
 };
 
 class InertiaSource {

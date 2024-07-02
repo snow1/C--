@@ -26,13 +26,7 @@ DataBridge::DataBridge(mutex& m, shared_ptr<InertiaSource> inertia, shared_ptr<A
 const FlightData DataBridge::GetFlightData() {
 
     std::lock_guard<std::mutex> lock(m);
-    //the number of samples is random from 0-1
-
-    flight_data.system_depth =  ((double) rand() / (RAND_MAX)) + 1;
-    flight_data.pitch =  ((double) rand() / (RAND_MAX)) + 1;
-    flight_data.heading =  ((double) rand() / (RAND_MAX)) + 1;
-
-
+    flight_data.water_column_depth = flight_data.system_depth + flight_data.system_height;
     cout << "System: { " << flight_data.system_depth << ", " << flight_data.system_height << ", " << flight_data.water_column_depth << ", " << flight_data.roll << ", " << flight_data.pitch << ", " << flight_data.heading << " }" << endl;
 
     return flight_data;
@@ -46,12 +40,14 @@ void DataBridge::On_HeightUpdate(const AltimeterSample &sample) {
 
 void DataBridge::On_PressureUpdate(const PressureSample &sample) {
     std::lock_guard<std::mutex> lock(m);
-    flight_data.water_column_depth = sample.pressure;
+    flight_data.system_depth = sample.pressure;
     cout << "Pressure Update: " << sample.pressure << endl;
 }
 
 void DataBridge::On_InertiaUpdate(const InertiaSample &sample) {
     std::lock_guard<std::mutex> lock(m);
     flight_data.roll = sample.x;
-    cout << "Inertia Update: " << sample.x << endl;
+    flight_data.pitch = sample.y;
+    flight_data.heading = sample.z;
+    cout << "Inertia Update -- Roll: " << flight_data.roll << ", Pitch: " << flight_data.pitch << ", Heading: "<<flight_data.heading<< endl;
 }

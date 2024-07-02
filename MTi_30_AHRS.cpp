@@ -18,5 +18,7 @@ void MTi_30_AHRS::OnSample(){
 const InertiaSample MTi_30_AHRS::OnSampleInertia(){
     InertiaSample sample;
     sample.x = distribution(generator);
+    sample.y = distribution(generator);
+    sample.z = distribution(generator);
     return sample;
 }
